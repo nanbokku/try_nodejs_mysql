@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Test Page</title>
+  </head>
+  <body>
+    <h1>Test Page</h1>
+    <div id="list"></div>
+
+    <script type="text/template" id="template-todo">
+      <input type="checkbox" class="checkbox" <%= completed ? "checked" : "" %>>
+      <%= contents %>
+    </script>
+    <script type="module" src="public/javascripts/bundle.js"></script>
+  </body>
+</html>

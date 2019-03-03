@@ -1,0 +1,30 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    # image: mysql:latest の場合は下記を記載
+    # command: --default-authentication-plugin=mysql_native_password
+    container_name: db
+    working_dir: /home/app/mysql
+    ports:
+      - 3306:3306 # 3306がMySQLのポート番号のデフォルト
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo_database
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - /vagrant/mysql:/home/app/mysql
+      - /vagrant/mysql/init:/docker-entrypoint-initdb.d # /docker-entrypoint-initdb.d/ というディレクトリ内に初期化用のSQLやスクリプトを置く
+
+  node:
+    image: node:10
+    container_name: node
+    working_dir: /home/app/node
+    command: bash -c "npm install && npm start"
+    ports:
+      - 80:8080
+    depends_on:
+      - db
+    volumes:
+      - /vagrant/node:/home/app/node
+      - /home/app/node/node_modules
