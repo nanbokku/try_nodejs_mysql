@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server && nodemon index.js --legacy-watch"
+    "start": "cd server && nodemon index.js --legacy-watch",
+    "build": "cd client && browserify ./javascripts/index.js -o ./public/javascripts/bundle.js"
   },
   "author": "",
   "license": "ISC",

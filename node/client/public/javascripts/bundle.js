@@ -5,20 +5,18 @@ const TodoListView = require('./view/todo_list');
 $(() => {
   const todoListView = new TodoListView();
   todoListView.events.addEventListener('checked', data => {
-    console.log(data);
     $.ajax({
       method: 'PUT',
       url: '/todo/' + data.id,
       data: JSON.stringify({ completed: data.completed }),
-      dataType: 'json',
-      contentType: 'application/json'
+      dataType: 'json', // response
+      contentType: 'application/json' // request
     }).done(res => {
       console.log(res);
     });
   });
 
   $.get('/todo/all').done(res => {
-    console.log(res);
     todoListView.render(res);
   });
 });
