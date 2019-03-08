@@ -3,6 +3,7 @@ services:
   db:
     image: mysql:5.7
     # image: mysql:latest の場合は下記を記載
+    # MySQL8から新しい認証方式が採用されたがnodejsのmysqlパッケージが対応していない
     # command: --default-authentication-plugin=mysql_native_password
     container_name: db
     working_dir: /home/app/mysql
